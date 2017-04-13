@@ -30,7 +30,7 @@ class Submit
         $message .= "</p>";
         $json = [];
         foreach ($this->email_to as $mail){
-            if (mail($this->email_to,$this->from,$message,$this->mailheaders)) {
+            if (mail($mail,$this->fromText,$message,$this->mailheaders)) {
                 $_SESSION['mail_send_tracker'] = true;
                 $_SESSION['time_tracker'] = time();
                 $json = [

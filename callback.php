@@ -18,9 +18,11 @@ if (!isset($_SESSION['time_tracker'])) {
 }
 
 $submit = new Submit();
+
 if ($submit->valid($_POST)) {
-    echo $submit->send();
+    $submit->email_to = ["mail@nikolaywerner.ru","256@skyq.ru"];
+    $submit->send();
 }else{
-    echo $submit->getError();
+    $submit->getError();
 }
 //echo $submit->go($_POST);

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="src/main.css">
+    <script src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
+    <script src="src/skyq_callback.js"></script>
+
+    <title>Document</title>
+
+</head>
+<body>
+
+<div id="form_1"></div>
+<div id="form_2"></div>
+
+<!--fff-->
+-
+<div class="popup-overlayer"></div>
+-
+<div class="popup-window popup-window--form popup-window--a">
+    -
+    <button class="button button--close-popup">Закрыть</button>
+    -
+    <div class="form-wr">
+
+        -
+        <form class="form form--a">
+            <div class="form__send-statusbar" sendstatus="1">
+                <div class="form__send-statusbar-text-wr">
+                    <p class="form__send-status">Мы получили вашу заявку и бла-бла. Хотя нет, это просто рыба для
+                        разработки.</p>
+                    <a href="" class="form__close-send-statusbar">Скрыть уведомление</a>
+                </div>
+            </div>
+
+            -<h5 class="form__header">Заявка на что-то</h5>
+            -<p class="form__description"></p>
+
+            -<input name="name" type="text" class="form__input form__input--hidden">
+
+            <label class="form__label" for="phone">Телефон*:</label>
+            <input id="phone" name="phone" type="text" class="form__input form__input--text">
+
+            <label class="form__label" for="email">Электропочта:</label>
+            <input id="email" name="email" type="text" class="form__input form__input--text">
+            <label class="form__label" for="text">Здесь можно высказаться:</label>
+            <textarea id="text" name="text" class="form__input form__input--textarea" cols="30" rows="10"></textarea>
+
+            <input type="submit" class="form__input form__input--submit" name="send" value="Отправить">
+        </form>
+    </div>
+</div>
+
+
+<script type="application/javascript">
+
+    $(function () {
+
+        var formOne = new f('form_1');
+        formOne._url = 'http://callback/callback.php';
+        formOne.iButtonShow.lang = 'хуй';
+        formOne.iFormDescription.lang = 'Кратко расскажем о том, что произойдёт после того, как вы отправите форму.';
+
+        formOne.init();
+        var email = formOne.addField();
+        email.name = "email";
+        email.class.push = 'form__input--text';
+        email.textLabel = 'Электропочта:';
+        formOne.setField(email);
+        var text = formOne.addField();
+        text.name = "text";
+        text.class.push = 'form__input--textarea';
+        text.textLabel = 'Здесь можно высказаться:';
+        text.row = "10";
+        text.cols = "30";
+        formOne.setField(text);
+        formOne.end();
+
+
+
+        var formTwo = new f('form_2');
+        formTwo._url = 'http://callback/callback.php';
+        formTwo.init();
+        var submit = formTwo.addSubmitButton();
+        submit.value = 'Захуярить на сервак';
+        formTwo.end(submit);
+    });
+</script>
+</body>
+</html>

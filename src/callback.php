@@ -7,11 +7,13 @@ class Submit
     private $data;
     public $error;
     public $code;
+    public $okText = "Отлично. Скоро позвоним!";
     public $errorTextTime = "Второй раз форму отправляешь.";
-    public $errorTextErrorSend = "Кажется форма сломалась. Скоро починю.";
+    public $errorTextErrorSend = "Проблемы с отправкой письма.";
+    public $FatalityError = "Кажется форма сломалась. Скоро починю.";
     public $fromText = "Тестовое письмо из записи в лаборатории";
     public $mailheaders = "Content-type: text/html; charset=utf-8 \r\n";
-    public $email_to = ["mail@nikolaywerner.ru"];
+    public $email_to = [];
     private $lang = [
         "name"  => 'Имя: ',
         "phone" => 'Телефон: ',
@@ -21,28 +23,26 @@ class Submit
 
     public function send()
     {
-        $message = "<p>";
+        $message = '';
         foreach ($this->data as $key => $value) {
             if ($key != 'name') {
-                $message .= $this->lang[$key].$value."</br>";
+                $message .= "<p>".$this->lang[$key].$value."</p>";
             }
         }
-        $message .= "</p>";
         $json = [];
         foreach ($this->email_to as $mail){
-            if (mail($this->email_to,$this->from,$message,$this->mailheaders)) {
-                $_SESSION['mail_send_tracker'] = true;
+            if (mail($mail,$this->fromText,$message,$this->mailheaders)) {
+                $_SESSION['mail_was_send'] = true;
                 $_SESSION['time_tracker'] = time();
                 $json = [
-                    'code'=>'200'
+                    "code"     => '200',
+                    "response" => $this->okText,
                 ];
             } else {
-                $_SESSION['mail_send_tracker'] = false;
+                $_SESSION['mail_was_send'] = false;
                 $this->error = $this->errorTextErrorSend;
-                $json = [
-                    "code"     => "404",
-                    "response" => $this->error,
-                ];
+                $this->code = '404';
+                $json = $this->getError();
             }
         }
         header("Content-type: application/json");
@@ -63,7 +63,9 @@ class Submit
     {
         $this->error = '';
         if (isset($data['name']) AND $data['name'] == '') {
-            if (!$_SESSION['mail_send_tracker']) {
+            if (!$_SESSION['mail_was_send']) {
+                $can_send = true;
+            } else {
                 if (time() - $_SESSION['time_tracker'] > 1 * 60) {
                     $can_send = true;
                 } else {
@@ -71,14 +73,10 @@ class Submit
                     $this->code = '404';
                     $can_send = false;
                 }
-            } else {
-                $this->error = $this->errorTextErrorSend;
-                $this->code = '404';
-                $can_send = false;
             }
         } else {
-            $this->code = $this->errorTextErrorSend;
-            $this->error = '';
+            $this->error = $this->FatalityError;
+            $this->code = '404';
             $can_send = false;
         }
         if ($can_send) {

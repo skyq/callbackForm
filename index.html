@@ -62,10 +62,9 @@
     $(function () {
 
         var formOne = new f('form_1');
-        formOne._url = 'http://callback/callback.php';
+        formOne._url = 'http://note.skyq.ru/callback.php';
         formOne.iButtonShow.lang = 'хуй';
         formOne.iFormDescription.lang = 'Кратко расскажем о том, что произойдёт после того, как вы отправите форму.';
-
         formOne.init();
         var email = formOne.addField();
         email.name = "email";
@@ -74,6 +73,7 @@
         formOne.setField(email);
         var text = formOne.addField();
         text.name = "text";
+        text.element = "textarea";
         text.class.push = 'form__input--textarea';
         text.textLabel = 'Здесь можно высказаться:';
         text.row = "10";
@@ -84,7 +84,7 @@
 
 
         var formTwo = new f('form_2');
-        formTwo._url = 'http://callback/callback.php';
+        formTwo._url = 'http://note.skyq.ru/callback.php';
         formTwo.init();
         var submit = formTwo.addSubmitButton();
         submit.value = 'Захуярить на сервак';

@@ -18,7 +18,7 @@
  $(function () {
 
         var formOne = new f('formOne');
-        formOne._url = 'http://note.skyq.ru/callback.php';
+        formOne._url = 'http://your.domain/callback.php';
         formOne.iButtonShow.lang = 'Открыть форму';
         formOne.iFormDescription.lang = 'Кратко расскажем о том, что произойдёт после того, как вы отправите форму.';
 
@@ -38,7 +38,7 @@
         formOne.end();
 
         var formTwo = new f('formTwo');
-        formTwo._url = 'http://note.skyq.ru/callback.php';
+        formTwo._url = 'http://your.domain/callback.php';
         formTwo.init();
         var submit = formTwo.addSubmitButton();
         submit.value = 'Отправить на сервак';

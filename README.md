@@ -49,7 +49,7 @@
 Все. На месте formOne и formTwo появяться скрытые формы по макету как 
 [nikolaywerner lab](http://nikolaywerner.ru/entry/prostaya-forma-obratnoy-svyazi)
 
-### Ветка more_easy проще. <br/>
+### Ветка more_easy проще.
 Тут мы создаем в html тот вид формы, что мы хотим и лишь только раставляем id обязательным элемента
  + form
  + window

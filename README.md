@@ -59,36 +59,35 @@
  + buttonShow
  + buttonClose
  + statusbarText
- + buttonStatusbarClose
- <br/> <br/> 
- Пример:
+ + buttonStatusbarClose<br/> 
+ <br/> 
+ Пример (убрал классы для облечения текста, вся разметка есть на сайте по ссылке выше):
  ```
- <div id="f2-overlayer" class="popup-overlayer"></div>
- <div id="f2-window" class="popup-window popup-window--form popup-window--a">
-     <button id="f2-buttonClose" class="button button--close-popup">Закрыть</button>
-     <div class="form-wr">
-         <form id="f2-form" class="form form--a">
-             <div id="f2-statusbar" class="form__send-statusbar" sendstatus="1">
-                 <div class="form__send-statusbar-text-wr">
-                     <p id="f2-statusbarText" class="form__send-status">Мы получили вашу заявку и бла-бла. Хотя нет, это просто рыба для
-                         разработки.</p>
-                     <a id="f2-buttonStatusbarClose" href="javascript:void(0)" class="form__close-send-statusbar">Скрыть уведомление</a>
+ <div id="f2-overlayer"></div>
+ <div id="f2-window">
+     <button id="f2-buttonClose">Закрыть</button>
+     <div>
+         <form id="f2-form">
+             <div id="f2-statusbar">
+                 <div>
+                     <p id="f2-statusbarText">Тут будет ответ</p>
+                     <a id="f2-buttonStatusbarClose" href="javascript:void(0)">Скрыть уведомление</a>
                  </div>
              </div>
  
-             <h5 class="form__header">Заявка на что-то</h5>
-             <p class="form__description">Кратко расскажем о том, что произойдёт после того, как вы отправите форму.</p>
+             <h5>Заявка на что-то</h5>
+             <p>Кратко расскажем о том, что произойдёт после того, как вы отправите форму.</p>
  
-             <input id="f2-name" name="name" type="text" class="form__input form__input--hidden">
+             <input id="f2-name" name="name" type="text">
  
-             <label class="form__label" for="f2-phone">Телефон*:</label>
-             <input id="f2-phone" name="phone" type="text" class="form__input form__input--text">
+             <label for="f2-phone">Телефон*:</label>
+             <input id="f2-phone" name="phone" type="text">
  
-             <button id="f2-buttonSend" class="form__input form__input--submit">Отправить</button>
+             <button id="f2-buttonSend">Отправить</button>
          </form>
      </div>
  </div>
- <button id="f2-buttonShow" class="button button--sample-form">Открыть форму</button>
+ <button id="f2-buttonShow">Открыть форму</button>
  ```
  В js:
 ```

@@ -1,6 +1,5 @@
 jQuery.noConflict();
 var $ = jQuery;
-
 function f(idForm) {
     this._id = idForm;
     this._url = '';
@@ -9,66 +8,62 @@ function f(idForm) {
     this.errorText = 'Кажется форма сломалась. Скоро починю.';
     this.phoneErrorText = 'Ну хоть телефон укажи, чтобы форма отправилась';
     this.doubleErrorText = 'Второй раз форму отправляешь.';
-
-}
-
-f.prototype.ioverLayer = {
-    class: ['popup-overlayer'],
-    el: 'div',
-    lang: ''
-};
-f.prototype.iWindow = {
-    class: ['popup-window', 'popup-window--form', 'popup-window--a'],
-    el: 'div',
-    lang: ''
-};
-f.prototype.iButtonSubmit = {
-    class: ['form__input', 'form__input--submit'],
-    el: 'button',
-    lang: 'Отправить'
-};
-f.prototype.iButtonShow = {
-    class: ['button', 'button--sample-form'],
-    el: 'button',
-    lang: 'Показать форму'
-};
-f.prototype.iButtonClose = {
-    class: ['button', 'button--close-popup'],
-    el: 'button',
-    lang: 'Закрыть'
-};
-f.prototype.iFormWr = {
-    class: ['form-wr'],
-    el: 'div',
-    lang: ''
-};
-f.prototype.iFormStatusBar = {
-    class: ['form__send-statusbar'],
-    el: 'div',
-    lang: '',
-};
-f.prototype.iFormStatusBarWr = {
-    class: ['form__send-statusbar-text-wr'],
-    el: 'div',
-    lang: '',
-};
-f.prototype.iForm = {
-    class: ['form', 'form--a'],
-    el: 'form',
-    lang: ''
-};
-f.prototype.iFormHeader = {
-    class: ['form__header'],
-    el: 'h5',
-    lang: 'Заявка на что-то'
-};
-f.prototype.iFormDescription = {
-    class: ['form__description'],
-    el: 'p',
-    lang: ''
-};
-f.prototype.field =
-    {
+    this.ioverLayer = {
+        class: ['popup-overlayer'],
+        el: 'div',
+        lang: ''
+    };
+    this.iWindow = {
+        class: ['popup-window', 'popup-window--form', 'popup-window--a'],
+        el: 'div',
+        lang: ''
+    };
+    this.iButtonSubmit = {
+        class: ['form__input', 'form__input--submit'],
+        el: 'button',
+        lang: 'Отправить'
+    };
+    this.iButtonShow = {
+        class: ['button', 'button--sample-form'],
+        el: 'button',
+        lang: 'Показать форму'
+    };
+    this.iButtonClose = {
+        class: ['button', 'button--close-popup'],
+        el: 'button',
+        lang: 'Закрыть'
+    };
+    this.iFormWr = {
+        class: ['form-wr'],
+        el: 'div',
+        lang: ''
+    };
+    this.iFormStatusBar = {
+        class: ['form__send-statusbar'],
+        el: 'div',
+        lang: '',
+    };
+    this.iFormStatusBarWr = {
+        class: ['form__send-statusbar-text-wr'],
+        el: 'div',
+        lang: '',
+    };
+    this.iForm = {
+        class: ['form', 'form--a'],
+        el: 'form',
+        lang: ''
+    };
+    this.iFormHeader = {
+        class: ['form__header'],
+        el: 'h5',
+        lang: 'Заявка на что-то'
+    };
+    this.iFormDescription = {
+        class: ['form__description'],
+        el: 'p',
+        lang: ''
+    };
+    this.field = {
         name: "",
         element: "input",
         type: "text",
@@ -81,9 +76,9 @@ f.prototype.field =
         classLabel: ['form__label'],
         textLabel: 'Телефон*:',
         elementLabel: 'label',
-    }
-;
+    };
 
+}
 f.prototype.init = function () {
     if (this._id !== '') {
         if (document.getElementById(this._id)) {
@@ -234,18 +229,19 @@ f.prototype.initSubmit = function () {
             }).done(function (json) {
                 switch (json.code) {
                     case "404":
-                        console.log(json.response);
-                        self.statusBarP.innerHTML = json.response;
-                        self.showStatusbar();
-                        function hideStatusbar() {
-                            $("#" + self.statusBar.id).fadeOut(300);
-                        }
-
-                        setTimeout(hideStatusbar, self.delay);
+                        break;
+                    case "200":
                         break;
                     default:
                         break;
                 }
+                self.statusBarP.innerHTML = json.response;
+                self.showStatusbar();
+                function hideStatusbar() {
+                    $("#" + self.statusBar.id).fadeOut(300);
+                }
+
+                setTimeout(hideStatusbar, self.delay);
             }).fail(function (xhr, status, errorThrown) {
 //                alert( "Sorry, there was a problem!" );
                 console.log("Error: " + errorThrown);

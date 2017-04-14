@@ -10,8 +10,8 @@ use CallBack\Submit;
 
 ob_start();
 session_start();
-if (!isset($_SESSION['mail_send_tracker'])) {
-    $_SESSION['mail_send_tracker'] = false;
+if (!isset($_SESSION['mail_was_send'])) {
+    $_SESSION['mail_was_send'] = false;
 }
 if (!isset($_SESSION['time_tracker'])) {
     $_SESSION['time_tracker'] = time();
@@ -20,9 +20,8 @@ if (!isset($_SESSION['time_tracker'])) {
 $submit = new Submit();
 
 if ($submit->valid($_POST)) {
-    $submit->email_to = ["mail@nikolaywerner.ru","256@skyq.ru"];
-    $submit->send();
+    $submit->email_to = ["256@skyq.ru"];
+    echo $submit->send();
 }else{
-    $submit->getError();
+    echo $submit->getError();
 }
-//echo $submit->go($_POST);

@@ -26,7 +26,6 @@
         formOne._url = 'http://note.skyq.ru/callback.php';
         formOne.iButtonShow.lang = 'хуй';
         formOne.iFormDescription.lang = 'Кратко расскажем о том, что произойдёт после того, как вы отправите форму.';
-
         formOne.init();
         var email = formOne.addField();
         email.name = "email";
@@ -35,6 +34,7 @@
         formOne.setField(email);
         var text = formOne.addField();
         text.name = "text";
+        text.element = "textarea";
         text.class.push = 'form__input--textarea';
         text.textLabel = 'Здесь можно высказаться:';
         text.row = "10";

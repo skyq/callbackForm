@@ -41,7 +41,6 @@
             <textarea id="f1-text" name="text" class="form__input form__input--textarea" cols="30"
                       rows="10"></textarea>
 
-            <!--<input id="f1-statusbarText" type="submit" class="form__input form__input&#45;&#45;submit" name="send" value="Отправить">-->
             <button id="f1-buttonSend" class="form__input form__input--submit">Отослать</button>
         </form>
     </div>
@@ -49,7 +48,7 @@
 <button id="f1-buttonShow" class="button button--sample-form">Показать форму</button>
 
 
-<div id="f2-overlayer" class="popup-overlayer"></div>
+<div id="f2-overHayer" class="popup-overlayer"></div>
 <div id="f2-window" class="popup-window popup-window--form popup-window--a">
     <button id="f2-buttonClose" class="button button--close-popup">Закрыть</button>
     <div class="form-wr">
@@ -84,6 +83,8 @@
         f1.setUrl('http://note.skyq.ru/callback.php');
         var f2 = new CallBackForm('f2');
         f2.setUrl('http://note.skyq.ru/callback.php');
+        f2.overlayerId = 'overHayer';
+        f2.setElement("f2",f2.overlayerId);
 
     });
 </script>

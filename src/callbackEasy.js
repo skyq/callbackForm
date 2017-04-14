@@ -5,27 +5,27 @@ function CallBackForm(idForm) {
     this.url = '';
     this.form = idForm + '-form';
     this.delay = 5000;
-    this.formName = 'form';
-    this.windowName = 'window';
-    this.controlName = 'name';
-    this.statusbarName = 'statusbar';
-    this.overlayerName = 'overlayer';
-    this.buttonSendName = 'buttonSend';
-    this.buttonShowName = 'buttonShow';
-    this.buttonCloseName = 'buttonClose';
-    this.statusbarTextName = 'statusbarText';
-    this.buttonStatusbarCloseName = 'buttonStatusbarClose';
+    this.formId = 'form';
+    this.windowId = 'window';
+    this.controlId = 'name';
+    this.statusbarId = 'statusbar';
+    this.overlayerId = 'overlayer';
+    this.buttonSendId = 'buttonSend';
+    this.buttonShowId = 'buttonShow';
+    this.buttonCloseId = 'buttonClose';
+    this.statusbarTextId = 'statusbarText';
+    this.buttonStatusbarCloseId = 'buttonStatusbarClose';
 
-    this.setElement(idForm, this.formName);
-    this.setElement(idForm, this.windowName);
-    this.setElement(idForm, this.controlName);
-    this.setElement(idForm, this.statusbarName);
-    this.setElement(idForm, this.overlayerName);
-    this.setElement(idForm, this.buttonSendName);
-    this.setElement(idForm, this.buttonShowName);
-    this.setElement(idForm, this.buttonCloseName);
-    this.setElement(idForm, this.statusbarTextName);
-    this.setElement(idForm, this.buttonStatusbarCloseName);
+    this.setElement(idForm, this.formId);
+    this.setElement(idForm, this.windowId);
+    this.setElement(idForm, this.controlId);
+    this.setElement(idForm, this.statusbarId);
+    this.setElement(idForm, this.overlayerId);
+    this.setElement(idForm, this.buttonSendId);
+    this.setElement(idForm, this.buttonShowId);
+    this.setElement(idForm, this.buttonCloseId);
+    this.setElement(idForm, this.statusbarTextId);
+    this.setElement(idForm, this.buttonStatusbarCloseId);
 
     this.initShow();
     this.initClose();
@@ -45,24 +45,24 @@ CallBackForm.prototype.setElement = function (id, name) {
 }
 CallBackForm.prototype.initShow = function () {
     var self = this;
-    this[this.buttonShowName].onclick = function () {
+    this[this.buttonShowId].onclick = function () {
 
-        $("#" + self[self.overlayerName].id).fadeIn(500);
-        $("#" + self[self.windowName].id).fadeIn(500);
+        $("#" + self[self.overlayerId].id).fadeIn(500);
+        $("#" + self[self.windowId].id).fadeIn(500);
     };
 
 };
 CallBackForm.prototype.initClose = function () {
     var self = this;
-    this[this.buttonCloseName].onclick = function () {
-        $("#" + self[self.overlayerName].id).fadeOut(500);
-        $("#" + self[self.windowName].id).fadeOut(500);
+    this[this.buttonCloseId].onclick = function () {
+        $("#" + self[self.overlayerId].id).fadeOut(500);
+        $("#" + self[self.windowId].id).fadeOut(500);
 
     };
 };
 CallBackForm.prototype.initCloseStatusBar = function () {
     var self = this;
-    this[this.buttonStatusbarCloseName].onclick = function () {
+    this[this.buttonStatusbarCloseId].onclick = function () {
         self.hideStatusbar();
     };
 };
@@ -70,16 +70,16 @@ CallBackForm.prototype.showStatusbar = function (idStatusBar) {
     $("#" + idStatusBar).fadeIn(300);
 };
 CallBackForm.prototype.hideStatusbar = function () {
-    $("#" + this[this.statusbarName].id).fadeOut(300);
+    $("#" + this[this.statusbarId].id).fadeOut(300);
 };
 CallBackForm.prototype.setUrl = function (url) {
     this.url = url;
 };
 CallBackForm.prototype.initSubmit = function () {
     var self = this;
-    this[this.buttonSendName].onclick = function () {
-        var control = self[self.controlName].value;
-        var data = $('#' + self[self.formName].id).serialize();
+    this[this.buttonSendId].onclick = function () {
+        var control = self[self.controlId].value;
+        var data = $('#' + self[self.formId].id).serialize();
         if (control === '') {
             $.ajax({
                 url: self.url,
@@ -97,10 +97,10 @@ CallBackForm.prototype.initSubmit = function () {
                         break;
                 }
                 //
-                self[self.statusbarTextName].innerHTML = json.response;
-                self.showStatusbar(self[self.statusbarName].id);
+                self[self.statusbarTextId].innerHTML = json.response;
+                self.showStatusbar(self[self.statusbarId].id);
                 function hideStatusbar() {
-                    $("#" + self[self.statusbarName].id).fadeOut(300);
+                    $("#" + self[self.statusbarId].id).fadeOut(300);
                 }
 
                 setTimeout(hideStatusbar, self.delay);

@@ -62,7 +62,9 @@
  + buttonStatusbarClose<br/> 
  <br/> 
  Пример (убрал классы для облечения текста, вся разметка есть на сайте по ссылке выше):
- ```
+ <br/> 
+```
+ 
  <div id="f2-overlayer"></div>
  <div id="f2-window">
      <button id="f2-buttonClose">Закрыть</button>
@@ -88,7 +90,7 @@
      </div>
  </div>
  <button id="f2-buttonShow">Открыть форму</button>
- ```
+```
  В js:
 ```
 var f2 = new CallBackForm('f2');
@@ -101,8 +103,3 @@ f2.setUrl('http://your.domain/callback.php');
 f2.overlayerId = 'overHayer';
 f2.setElement("f2",f2.overlayerId);
 ```
- 
-
-
-
-

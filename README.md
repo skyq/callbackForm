@@ -60,6 +60,7 @@
  + buttonClose
  + statusbarText
  + buttonStatusbarClose
+ <br/> <br/> 
  Пример:
  ```
  <div id="f2-overlayer" class="popup-overlayer"></div>

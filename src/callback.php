@@ -7,13 +7,23 @@ class Submit
     private $data;
     public $error;
     public $code;
+
     public $okText = "Отлично. Скоро позвоним!";
     public $errorTextTime = "Второй раз форму отправляешь.";
-    public $errorTextErrorSend = "Проблемы с отправкой письма.";
     public $FatalityError = "Кажется форма сломалась. Скоро починю.";
+    public $errorTextPhone = "Ну хоть телефон укажи, чтобы форма отправилась";
+    public $errorTextErrorSend = "Проблемы с отправкой письма.";
+//
+//    public $okText = "ok";
+//    public $errorTextTime = "errorTextTime";
+//    public $FatalityError = "FatalityError";
+//    public $errorTextPhone = "errorTextPhone";
+//    public $errorTextErrorSend = "errorTextErrorSend";
+
     public $fromText = "Тестовое письмо из записи в лаборатории";
     public $mailheaders = "Content-type: text/html; charset=utf-8 \r\n";
     public $email_to = [];
+
     private $lang = [
         "name"  => 'Имя: ',
         "phone" => 'Телефон: ',
@@ -26,12 +36,12 @@ class Submit
         $message = '';
         foreach ($this->data as $key => $value) {
             if ($key != 'name') {
-                $message .= "<p>".$this->lang[$key].$value."</p>";
+                $message .= "<p>" . $this->lang[$key] . $value . "</p>";
             }
         }
         $json = [];
-        foreach ($this->email_to as $mail){
-            if (mail($mail,$this->fromText,$message,$this->mailheaders)) {
+        foreach ($this->email_to as $mail) {
+            if (mail($mail, $this->fromText, $message, $this->mailheaders)) {
                 $_SESSION['mail_was_send'] = true;
                 $_SESSION['time_tracker'] = time();
                 $json = [
@@ -63,16 +73,22 @@ class Submit
     {
         $this->error = '';
         if (isset($data['name']) AND $data['name'] == '') {
-            if (!$_SESSION['mail_was_send']) {
-                $can_send = true;
-            } else {
-                if (time() - $_SESSION['time_tracker'] > 1 * 60) {
+            if (isset($data['phone']) AND $data['phone'] != '') {
+                if (!$_SESSION['mail_was_send']) {
                     $can_send = true;
                 } else {
-                    $this->error = $this->errorTextTime;
-                    $this->code = '404';
-                    $can_send = false;
+                    if (time() - $_SESSION['time_tracker'] > 1 * 60) {
+                        $can_send = true;
+                    } else {
+                        $this->error = $this->errorTextTime;
+                        $this->code = '404';
+                        $can_send = false;
+                    }
                 }
+            } else {
+                $this->error = $this->errorTextPhone;
+                $this->code = '404';
+                $can_send = false;
             }
         } else {
             $this->error = $this->FatalityError;

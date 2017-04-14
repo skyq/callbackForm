@@ -8,48 +8,83 @@
 
     <link rel="stylesheet" href="src/main.css">
     <script src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
-    <script src="src/skyq_callback.js"></script>
+    <script src="src/callbackEasy.js"></script>
 
     <title>Document</title>
 
 </head>
 <body>
 
-<div id="form_1"></div>
-<div id="form_2"></div>
+<div id="f1-overlayer" class="popup-overlayer"></div>
+<div id="f1-window" class="popup-window popup-window--form popup-window--a">
+    <button id="f1-buttonClose" class="button button--close-popup">Закрыть</button>
+    <div class="form-wr">
+        <form id="f1-form" class="form form--a">
+            <div id="f1-statusbar" class="form__send-statusbar" sendstatus="1">
+                <div class="form__send-statusbar-text-wr">
+                    <p id="f1-statusbarText" class="form__send-status">Мы получили вашу заявку и бла-бла. Хотя нет, это просто рыба для
+                        разработки.</p>
+                    <a id="f1-buttonStatusbarClose" href="javascript:void(0)" class="form__close-send-statusbar">Скрыть уведомление</a>
+                </div>
+            </div>
+
+            <h5 class="form__header">Заявка на что-то</h5>
+            <p class="form__description">Кратко расскажем о том, что произойдёт после того, как вы отправите форму.</p>
+
+            <input id="f1-name" name="name" type="text" class="form__input form__input--hidden">
+
+            <label class="form__label" for="f1-phone">Телефон*:</label>
+            <input id="f1-phone" name="phone" type="text" class="form__input form__input--text">
+            <label class="form__label" for="f1-email">Электропочта:</label>
+            <input id="f1-email" name="email" type="text" class="form__input form__input--text">
+            <label class="form__label" for="f1-text">Здесь можно высказаться:</label>
+            <textarea id="f1-text" name="text" class="form__input form__input--textarea" cols="30"
+                      rows="10"></textarea>
+
+            <!--<input id="f1-statusbarText" type="submit" class="form__input form__input&#45;&#45;submit" name="send" value="Отправить">-->
+            <button id="f1-buttonSend" class="form__input form__input--submit">Отослать</button>
+        </form>
+    </div>
+</div>
+<button id="f1-buttonShow" class="button button--sample-form">Показать форму</button>
+
+
+<div id="f2-overlayer" class="popup-overlayer"></div>
+<div id="f2-window" class="popup-window popup-window--form popup-window--a">
+    <button id="f2-buttonClose" class="button button--close-popup">Закрыть</button>
+    <div class="form-wr">
+        <form id="f2-form" class="form form--a">
+            <div id="f2-statusbar" class="form__send-statusbar" sendstatus="1">
+                <div class="form__send-statusbar-text-wr">
+                    <p id="f2-statusbarText" class="form__send-status">Мы получили вашу заявку и бла-бла. Хотя нет, это просто рыба для
+                        разработки.</p>
+                    <a id="f2-buttonStatusbarClose" href="javascript:void(0)" class="form__close-send-statusbar">Скрыть уведомление</a>
+                </div>
+            </div>
+
+            <h5 class="form__header">Заявка на что-то</h5>
+            <p class="form__description">Кратко расскажем о том, что произойдёт после того, как вы отправите форму.</p>
+
+            <input id="f2-name" name="name" type="text" class="form__input form__input--hidden">
+
+            <label class="form__label" for="f2-phone">Телефон*:</label>
+            <input id="f2-phone" name="phone" type="text" class="form__input form__input--text">
+
+            <button id="f2-buttonSend" class="form__input form__input--submit">Отправить</button>
+        </form>
+    </div>
+</div>
+<button id="f2-buttonShow" class="button button--sample-form">Открыть форму</button>
 
 <script type="application/javascript">
 
     $(function () {
 
-        var formOne = new f('form_1');
-        formOne._url = 'http://note.skyq.ru/callback.php';
-        formOne.iButtonShow.lang = 'хуй';
-        formOne.iFormDescription.lang = 'Кратко расскажем о том, что произойдёт после того, как вы отправите форму.';
-        formOne.init();
-        var email = formOne.addField();
-        email.name = "email";
-        email.class.push = 'form__input--text';
-        email.textLabel = 'Электропочта:';
-        formOne.setField(email);
-        var text = formOne.addField();
-        text.name = "text";
-        text.element = "textarea";
-        text.class.push = 'form__input--textarea';
-        text.textLabel = 'Здесь можно высказаться:';
-        text.row = "10";
-        text.cols = "30";
-        formOne.setField(text);
-        formOne.end();
+        var f1 = new CallBackForm('f1');
+        f1.setUrl('http://note.skyq.ru/callback.php');
+        var f2 = new CallBackForm('f2');
+        f2.setUrl('http://note.skyq.ru/callback.php');
 
-
-
-        var formTwo = new f('form_2');
-        formTwo._url = 'http://note.skyq.ru/callback.php';
-        formTwo.init();
-        var submit = formTwo.addSubmitButton();
-        submit.value = 'Захуярить на сервак';
-        formTwo.end(submit);
     });
 </script>
 </body>
